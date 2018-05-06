@@ -1,20 +1,14 @@
-#ShrekBot for Discord 0.2
-#By @AlexApps#9295
-
 import discord
 from discord.ext import commands
 import random
 import os
-from PIL import Image
-import time
-import urllib.parse
 
-bot = commands.Bot(command_prefix='sh!')
+bot = commands.Bot(command_prefix='/')
 bot.remove_command('help')
 
 @bot.event
 async def on_ready():
-	print('ShrekBot 0.2')
+	print('HerobrineBot 0.1dev')
 	print('')
 	print('Logged in as:')
 	print(bot.user.name)
@@ -22,77 +16,53 @@ async def on_ready():
 	print('Client User ID:')
 	print(bot.user.id)
 	print('')
-	await bot.change_presence(game=discord.Game(name='Shrek the Third', type=3))
+	await bot.change_presence(game=discord.Game(name='I Am Bread'))
 
 @bot.command()
 async def help():
-	await bot.say('__**ShrekBot 0.2 Commands:**__\n\n```css\nsh!help      : Shows help for commands\nsh!kill      : Be an assassin\nsh!choose    : Picks randomly between multiple choices\nsh!something : Random Stuff\nsh!zouss     : Zouss City\nsh!echo      : Echoes whatever you say\nsh!ping      : Useful for testing Internet speed\nsh!kick      : For getting rid of annoyances\nsh!hex       : Picks a random hex color\nsh!google    : Searches the web (or images if typed first)\nsh!lmgtfy    : If somebody has a really stupid question```\n```\nIf you want to suggest more commands, visit the creator at:\nhttps://discord.gg/2anYtuD```')
+	await bot.say('__**ToastBot 1.3dev Commands:**__\n\n```css\n/help : Helps you out!\n/eat  : Eats\n/idk  : Gives Helpful Advice\n/choose  : Chooses\n/noob  : Call Out The Noobs\n/kill  : Kill Annoying People\n/resurrect  : Brings Your Friends Back To Life\n/kick  : Gets rid of dumb butts\n/echo  : Repeats whatever you say\n/toast : The most important thing you need to know\n```\n```\nJoin my Discord!\nhttps://discord.gg/NsPCv4A\n```')
+
+@bot.command()
+async def idk():
+        await bot.say('Please Contact VeryToastyToast, MildlyWarmBread or SlightlyBurntToast With Any Questions. Thank You.')
+
+@bot.command()
+async def noob(*, mentioned = 'you'):
+        await bot.say('Hey ' + (mentioned) + ' Your A NOOOOOOOOOOOOOOOOOOOOOOOB')
 
 @bot.command()
 async def kill(*, mentioned = 'You'):
-	await bot.say((mentioned) + ' fell out of the world')
+	await bot.say((mentioned) + ' Ate Some Poisened Toast')
 
 @bot.command()
-async def choose(*choices : str):
-	await bot.say((random.choice(choices)) + ', I choose you!')
-
-@bot.command()
-async def something():
-	somethings = ['Somebody once told me the world was gonna roll me.\nI ain\'t the sharpest tool in the shed.', 'WHAT ARE YOU DOING IN MY SWAMP?!', 'Shrek is love, Shrek is life.']
-	await bot.say(random.choice(somethings))
-
-@bot.command()
-async def zouss():
-	await bot.say('ζ ο υ ς ς    Ͼ ι τ ψ !')
-
-@bot.command()
-async def ζουςς():
-	await bot.say('ζ ο υ ς ς    Ͼ ι τ ψ !')
+async def toast():
+	await bot.say('Sub To Team Toast Its ToastBot Approved')
 
 @bot.command()
 async def echo(*, message: str):
 	await bot.say(message)
+	
+@bot.command()
+async def choose(*, mentioned = 'You'):
+        await bot.say('Go ' + (mentioned) + ' I Choose You')
+        
+@bot.command()
+async def resurrect(*, mentioned = 'You'):
+        await bot.say((mentioned) + ' Subscribed To Team Toast And Came Back To Life')
+
+@bot.command()
+async def eat():
+        await bot.say('Om Nom Nom. Om.\nNom')
 
 @bot.command(pass_context = True)
 async def kick(ctx, userName: discord.User):
 	try:
 		if ctx.message.author.server_permissions.kick_members:
 			await bot.kick(userName)
-			await bot.say('That fool just got kicked from my swamp!')
-			await bot.upload('WhatAreYouDoingInMySwamp.gif')
+			await bot.say('Noob Just Betrayed Us')
 		else:
-			await bot.say('Sorry, you do not have permissions to do that!')
+			await bot.say('NO You Havent Eaten Enough Toast')
 	except:
-			await bot.say('Sorry, but an unexpected error occured. Make sure I have the permissions to kick.')
-			
-@bot.command()
-async def hex():
-	r = lambda: random.randint(0,255)
-	hexcode = '%02X%02X%02X' % (r(),r(),r())
-	rgbcode = str(tuple(int(hexcode[i:i+2], 16) for i in (0, 2 ,4)))
-	await bot.say('`Hex: #' + hexcode + '`\n`RGB: ' + rgbcode + '`')
-	im = Image.new("RGB", (64,64), '#' + hexcode)
-	im.save("color.png")
-	await bot.upload('color.png')
-	
-@bot.command(pass_context=True)
-async def ping(ctx):
-	channel = ctx.message.channel
-	t1 = time.perf_counter()
-	await bot.send_typing(channel)
-	t2 = time.perf_counter()
-	await bot.say("Pong: {}ms".format(round((t2-t1)*1000)))
-	
-@bot.command()
-async def lmgtfy(*, searchquery: str):
-	await bot.say('<https://lmgtfy.com/?iie=1&q=' + urllib.parse.quote_plus(searchquery) + '>')
-
-@bot.command()
-async def google(*, searchquery: str):
-	searchquerylower = searchquery.lower()
-	if searchquerylower.startswith('images '):
-		await bot.say('<https://www.google.com/search?tbm=isch&q=' + urllib.parse.quote_plus(searchquery[7:]) + '>')
-	else:
-		await bot.say('<https://www.google.com/search?q=' + urllib.parse.quote_plus(searchquery) + '>')
+			await bot.say('Sorry, But I Cant Do That. Please Make Sure I Have Permission To Kick.')
 
 bot.run(os.environ['TOKEN_DISCORD'])
