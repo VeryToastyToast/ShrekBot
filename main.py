@@ -20,7 +20,7 @@ async def on_ready():
 
 @bot.command()
 async def help():
-	await bot.say('__**ToastBot 1.3dev Commands:**__\n\n```css\n/help : Helps you out!\n/eat  : Eats\n/idk  : Gives Helpful Advice\n/choose  : Chooses\n/noob  : Call Out The Noobs\n/kill  : Kill Annoying People\n/resurrect  : Brings Your Friends Back To Life\n/kick  : Gets rid of dumb butts\n/echo  : Repeats whatever you say\n/toast : The most important thing you need to know\n```\n```\nJoin my Discord!\nhttps://discord.gg/NsPCv4A\n```')
+	await bot.say('__**ToastBot 1.3dev Commands:**__\n\n```css\n/help : Helps you out!\n/eat  : Eats\n/idk  : Gives Helpful Advice\n/choose  : Chooses\n/noob  : Call Out The Noobs\n/kill  : Kill Annoying People\n/resurrect  : Brings Your Friends Back To Life\n/kick  : Gets rid of dumb butts\n/echo  : Repeats whatever you say\n/toast : The most important thing you need to know\n```\n```\nJoin my Discord!\nhttps://discord.gg/hsS2xrz\n```')
 
 @bot.command()
 async def idk():
